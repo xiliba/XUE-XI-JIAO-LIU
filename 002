@@ -1,0 +1,11 @@
+from scapy.all import sniff, Packet
+
+def packet_callback(packet):
+    print(packet.summary())
+
+# 开始抓包，监听所有接口，持续100秒
+packets = sniff(prn=packet_callback, timeout=100, store=0)
+
+# 注意：'prn' 参数设置为 packet_callback 函数，每捕获一个包时都会调用该函数
+# 'timeout' 设置了抓包的持续时间，这里是100秒
+# 'store=0' 表示不存储捕获的包，节省内存
