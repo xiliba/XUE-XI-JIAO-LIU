@@ -1,0 +1,21 @@
+import pyautogui
+import time
+
+# 模拟用户点击屏幕中心（纯教育性脚本，不可用于实际游戏）
+def aim_and_shoot():
+    # 等待一小段时间让窗口激活
+    time.sleep(2)
+    
+    # 获取屏幕的中心点
+    screen_width, screen_height = pyautogui.size()
+    center_x, center_y = screen_width // 2, screen_height // 2
+    
+    # 移动鼠标到屏幕中心并点击
+    pyautogui.moveTo(center_x, center_y)
+    pyautogui.click()
+
+# 仅作为演示，实际游戏中不要使用
+if __name__ == "__main__":
+    print("程序将在5秒后模拟瞄准和射击...")
+    time.sleep(5)
+    aim_and_shoot()
