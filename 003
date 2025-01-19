@@ -1,0 +1,45 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+# 初始化浏览器
+driver = webdriver.Chrome(executable_path='/path/to/chromedriver')
+
+# 登录页面
+driver.get('https://www.example-ticket-site.com/login')
+
+# 假设用户名和密码是预设的，这里只是一个示例
+username = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "login_username")))
+password = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "login_password")))
+username.send_keys("your_username")
+password.send_keys("your_password")
+
+# 点击登录按钮
+login_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "login_button")))
+login_button.click()
+
+# 等待登录完成
+time.sleep(5)  # 实际应用中应使用更精确的方式等待
+
+# 导航到抢票页面
+driver.get('https://www.example-ticket-site.com/event/12345')
+
+# 找出购买按钮并点击
+buy_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Buy Now')]")))
+buy_button.click()
+
+# 选择座位或票种，这里假设你已经知道要选的票种
+seat_selection = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "seat_selection")))
+seat_selection.click()
+
+# 提交订单
+confirm_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "confirm_purchase")))
+confirm_button.click()
+
+# 处理支付，假设支付步骤已经简化
+# 在实际中，你可能需要处理更多的表单或支付网关
+
+# 关闭浏览器
+driver.quit()
