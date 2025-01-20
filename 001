@@ -1,0 +1,30 @@
+import random
+import time
+
+def mole_game():
+    score = 0
+    moles = ['地鼠1', '地鼠2', '地鼠3', '地鼠4', '地鼠5']
+    game_time = 10  # 游戏时间，单位为秒
+
+    print("欢迎玩打地鼠游戏！准备好击打地鼠了吗？")
+    start_time = time.time()
+
+    while time.time() - start_time < game_time:
+        mole_index = random.randint(0, len(moles) - 1)
+        print(f"一只{moles[mole_index]}出现了！快打它！")
+        
+        # 使用input来模拟玩家反应时间
+        hit = input("按Enter键击打地鼠！")
+        if hit == "":
+            score += 1
+            print("击中！你的分数增加了。")
+        else:
+            print("你错过了这只地鼠！")
+        
+        # 为下一次地鼠出现添加一些随机延迟
+        time.sleep(random.uniform(0.5, 1.5))
+
+    print(f"游戏结束！你的得分是：{score}")
+
+if __name__ == "__main__":
+    mole_game()
